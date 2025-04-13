@@ -1,0 +1,28 @@
+{
+  "name": "packages-template",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "eslint": "npx eslint",
+    "prettywrite": "npx prettier --write .",
+    "prettycheck": "npx prettier --check .",
+    "prepare": "husky"
+  },
+  "author": "musa",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@commitlint/cli": "^19.8.0",
+    "@commitlint/config-conventional": "^19.8.0",
+    "eslint": "^8.57.1",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-prettier": "^10.1.1",
+    "eslint-plugin-import": "^2.31.0",
+    "eslint-plugin-jsx-a11y": "^6.10.2",
+    "eslint-plugin-react": "^7.37.4",
+    "eslint-plugin-react-hooks": "^4.3.0",
+    "husky": "^9.1.7",
+    "prettier": "3.5.0"
+  }
+}
