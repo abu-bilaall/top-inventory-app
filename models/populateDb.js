@@ -32,7 +32,9 @@ CREATE TABLE motorcycles(
     CONSTRAINT fk_category_id --foreign key
         FOREIGN KEY(category_id)
         REFERENCES categories(category_id)
-        ON DELETE CASCADE
+        ON DELETE CASCADE,
+    CONSTRAINT unique_motorcycle_entry
+        UNIQUE(model_name, brand_id, year)
 );
 
 INSERT INTO categories (name, description) 
