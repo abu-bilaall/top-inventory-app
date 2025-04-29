@@ -2,19 +2,19 @@ const { Client } = require("pg");
 require("dotenv").config();
 
 const SQL = `
-CREATE TABLE categories(
+CREATE TABLE IF NOT EXISTS categories(
     category_id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
     name TEXT NOT NULL UNIQUE,
     description TEXT NOT NULL
 );
 
-CREATE TABLE brands(
+CREATE TABLE IF NOT EXISTS brands(
     brand_id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
     name TEXT NOT NULL UNIQUE,
     country_of_origin TEXT NOT NULL
 );
 
-CREATE TABLE motorcycles(
+CREATE TABLE IF NOT EXISTS motorcycles(
     motorcyle_id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
     model_name TEXT NOT NULL,
     brand_id INTEGER NOT NULL,
