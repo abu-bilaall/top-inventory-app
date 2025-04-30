@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add a new Motorcycle Category</title>
+</head>
+<body>
+    <header><h1>Add a New Motorcycle Category</h1></header>
+    <main>
+        <form action="/categories" method="post">
+            <label for="categoryName">Name</label>
+            <input type="text" name="categoryName" id="categoryName" required>
+            <label for="categoryDescription">Description</label>
+            <textarea name="categoryDescription" id="categoryDescription" required>
+            <button type="submit">Add</button>
+        </form>
+    </main>
+</body>
+</html>

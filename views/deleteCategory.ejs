@@ -1,0 +1,9 @@
+<!-- Delete button (triggers confirmation) -->
+<form action="/categories/<%= category.id %>?_method=DELETE" method="POST">
+    <button 
+      type="submit" 
+      onclick="return confirm('Delete this category permanently?')"
+    >
+      Delete Category
+    </button>
+  </form>
