@@ -7,5 +7,34 @@
 </head>
 <body>
     <h1>Welcome to Motorcycle Inventory</h1>
+    <main>
+        <section class="categories">
+            <h2>Categories</h2>
+            <ul>
+                <% categoriesList.forEach((category) => { %>
+                    <li><a href="/categories/<%= category.category_id %>"> <%= category.name %> </a></li>
+                <% }); %>
+            </ul>
+            <button><a href="/categories">View more</a></button>
+        </section>
+        <section class="brands">
+            <h2>Brands</h2>
+            <ul>
+                <% brandsList.forEach((brand) => { %>
+                   <li><a href="/brands/<%= brand.brand_id %>"> <%= brand.name %> </a></li> 
+                <% }); %>
+            </ul>
+            <button><a href="/brands">View more</a></button>
+        </section>
+        <section class="motorcycles">
+            <h2>Motorcycles</h2>
+            <ul>
+                <% motorcyclesList.forEach((motorcycle) => { %>
+                    <li><a href="/motorcycles/<%= motorcycle.motorcycle_id %>"> <%= motorcycle.model_name %></a></li>
+                <% }); %>
+            </ul>
+            <button><a href="/motorcycles">View more</a></button>
+        </section>
+    </main>
 </body>
 </html>
