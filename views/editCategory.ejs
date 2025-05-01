@@ -6,15 +6,16 @@
     <title>Edit Category</title>
 </head>
 <body>
-    <h1>Edit the <%= category.name %> Category</h1>
+  <%console.log(category);%>
+    <h1>Edit the <%= category[0].name %> Category</h1>
     <main>
-        <form action="/categories/<%= category.category_id %>?_method=PATCH" method="POST">
+        <form action="/categories/<%= category[0].category_id %>?_method=PATCH" method="POST">
             <label for="categoryName">Name</label>
             <input 
               type="text" 
               name="categoryName" 
               id="categoryName"
-              value="<%= category.name %>"
+              value="<%= category[0].name %>"
               required
             >
             <label for="categoryDescription">Description</label>
@@ -22,7 +23,7 @@
               name="categoryDescription" 
               id="categoryDescription"
               required
-            ><%= category.description %></textarea>
+            ><%= category[0].description %></textarea>
             <button type="submit">Update</button>
           </form>
     </main>

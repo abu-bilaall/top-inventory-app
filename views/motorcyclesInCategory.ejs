@@ -6,7 +6,18 @@
     <title><%= categoryName %></title>
 </head>
 <body>
-    <h1>Motorcycles in the <%= category[0].name %> category</h1>
+    <h1>Motorcycles in the <%= categoryName %> category</h1>
+    <p><a href="/categories/<%= categoryId %>/edit">Edit category details</a></p>
+    <div>
+        <form action="/categories/<%= categoryId %>?_method=DELETE" method="POST">
+            <button 
+              type="submit" 
+              onclick="return confirm('Delete this category permanently?')"
+            >
+              Delete Category
+            </button>
+          </form>
+    </div>
     <main>
         <ul>
             <% motorcyclesInCategory.forEach((motorcycle) => { %>
