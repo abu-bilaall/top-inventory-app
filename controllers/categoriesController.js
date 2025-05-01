@@ -1,6 +1,7 @@
 const asyncHandler = require("express-async-handler");
 const { body, validationResult } = require("express-validator");
 const db = require("../models/queries");
+const CustomNotFoundError = require("../errors/CustomNotFoundError");
 
 const validateCategoryFormEntry = [
   body("categoryName")
@@ -35,13 +36,12 @@ const addNewCategory = [
       });
     }
 
-    // todo: handle db error if entry is not unique (err code: 23505)
     const categoryId = await db.addNewCategory(
       categoryName,
       categoryDescription,
     );
 
-    res.redirect(`/categories/${categoryId.category_id}`);
+    return res.redirect(`/categories/${categoryId.category_id}`);
   }),
 ];
 
@@ -52,7 +52,7 @@ const getCategory = asyncHandler(async (req, res) => {
   const category = await db.getCategory(categoryId);
 
   if (!category) {
-    res.status(404).render("404");
+    throw CustomNotFoundError("Category Not Found.");
   }
 
   const categoryName = category[0].name;
@@ -88,7 +88,7 @@ const updateCategory = [
 
     const { categoryName, categoryDescription } = req.body;
     await db.updateCategory(categoryId, categoryName, categoryDescription);
-    res.redirect(`/categories/${categoryId}`);
+    return res.redirect(`/categories/${categoryId}`);
   }),
 ];
 
@@ -97,7 +97,7 @@ const editCategory = asyncHandler(async (req, res) => {
   const category = await db.getCategory(req.params.categoryId);
 
   if (!category) {
-    res.status(404).render("404");
+    throw CustomNotFoundError("Category does not exist");
   }
 
   res.render("editCategory", { category });
