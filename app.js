@@ -1,6 +1,6 @@
 const express = require("express");
 const path = require("node:path");
-const methodOverride = require('method-override');
+const methodOverride = require("method-override");
 
 // importing routers
 const indexRouter = require("./routes/indexRouter");
@@ -25,9 +25,25 @@ app.use("/categories", categoriesRouter);
 app.use("/brands", brandsRouter);
 app.use("/motorcycles", motorcyclesRouter);
 
-// the error-buck stops w/ me
-app.use((error, req, res, next) => {
-  console.log(error, req, res, next);
+// error middleware
+app.use((err, req, res, next) => {
+  console.error("Error:", err);
+
+  let statusCode = err.statusCode || 500;
+  if (err.code === 23505) statusCode = 409;
+
+  // 404
+  if (err.statusCode === 404) {
+    const errMessage = err.message;
+    return res.status(404).render("404", { errMessage });
+  }
+
+  // generic errors
+  return res.status(statusCode).render("error", {
+    statusCode,
+    message:
+      statusCode === 409 ? "Entry must be unique" : "Something went wrong",
+  });
 });
 
 // server listening..
