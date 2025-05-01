@@ -1,5 +1,6 @@
 const express = require("express");
 const path = require("node:path");
+const methodOverride = require('method-override');
 
 // importing routers
 const indexRouter = require("./routes/indexRouter");
@@ -12,6 +13,7 @@ const app = express();
 
 // handling incoming form data
 app.use(express.urlencoded({ extended: true }));
+app.use(methodOverride("_method"));
 
 // setting up views
 app.set("view engine", "ejs");
